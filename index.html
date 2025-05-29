@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lionel Falodu Photography</title>
+    <title>Sitharaclicks Photography</title>
     <style>
         body {
             font-family: sans-serif;
@@ -51,26 +51,30 @@
 
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 0; /* Reduced vertical padding, removed horizontal */
+            width: 100%; /* Make hero full width */
+            box-sizing: border-box; /* Ensure padding doesn't add to width */
         }
 
         .hero-title {
-            font-size: 2.5em;
+            font-size: 2.2em;
             margin-bottom: 20px;
             color: #555;
+            line-height: 1.4;
+            padding: 0 20px; /* Add some horizontal padding for the text */
         }
 
         .hero-image-container {
-            width: 80%;
-            max-width: 1200px;
-            margin-top: 30px;
+            width: 100%; /* Make image container full width */
+            max-width: none; /* Remove max-width restriction */
+            margin-top: 20px; /* Adjust top margin */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .hero-image {
             width: 100%;
             display: block;
-            border-radius: 5px;
+            border-radius: 0; /* Remove border radius for full width */
         }
 
         /* Responsive adjustments */
@@ -88,22 +92,19 @@
             }
 
             .hero {
-                padding: 60px 15px;
+                padding: 40px 0; /* Adjust padding for smaller screens */
             }
 
             .hero-title {
-                font-size: 2em;
-            }
-
-            .hero-image-container {
-                width: 95%;
+                font-size: 1.8em;
+                padding: 0 15px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">Lionel Falodu</div>
+        <div class="logo">Sitharaclicks</div>
         <nav>
             <ul>
                 <li><a href="#">Work</a></li>
@@ -114,9 +115,9 @@
     </header>
 
     <section class="hero">
-        <h1 class="hero-title">Landscape photographer based in<br>Boulder, Colorado.</h1>
+        <h1 class="hero-title">Capturing Your Moments,<br>From Grand Events to Timeless Portraits and Outdoor Adventures.</h1>
         <div class="hero-image-container">
-            <img src="placeholder_landscape.jpg" alt="Landscape Photograph" class="hero-image">
+            <img src="sitharaclicks.jpg" alt="Photography Example" class="hero-image">
         </div>
     </section>
 
