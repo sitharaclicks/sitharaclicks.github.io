@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitharaclicks Photography</title>
+    <title>Liam Chandler - Photographer's Portfolio</title>
+    <link rel="stylesheet" href="style.css"> <!-- We'll put the CSS in a file named style.css -->
     <style>
+        /* Basic CSS for this example - ideally this would be in style.css */
         body {
-            font-family: sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: sans-serif; /* Using a generic sans-serif font */
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff; /* White text by default */
         }
 
+        .container {
+            max-width: 1200px; /* Limit content width and center */
+            margin: 0 auto;
+            padding: 0 20px; /* Add some padding on the sides */
+        }
+
+        /* Header Styling */
         header {
-            background-color: #fff;
-            padding: 20px 40px;
+            position: absolute; /* Position over the hero image */
+            top: 0;
+            left: 0;
             width: 100%;
-            box-sizing: border-box;
+            z-index: 10; /* Ensure it's above the image */
+            padding: 20px 0;
+            color: #ffffff;
+        }
+
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ddd;
         }
 
         .logo {
@@ -34,95 +44,228 @@
 
         nav ul {
             list-style: none;
-            padding: 0;
             margin: 0;
+            padding: 0;
             display: flex;
+            gap: 30px; /* Space between navigation items */
         }
 
         nav li {
-            margin-left: 20px;
+            display: inline;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            color: #ffffff;
+            font-size: 1em;
+            padding-bottom: 5px; /* Space for the underline */
+            transition: border-bottom 0.3s ease; /* Smooth transition for underline */
         }
 
+        nav a:hover {
+            border-bottom: 2px solid #ffffff; /* Underline effect on hover */
+        }
+
+        nav a.active {
+             border-bottom: 2px solid #ffffff; /* Underline for active page */
+        }
+
+
+        /* Hero Section Styling */
         .hero {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            background-image: url('placeholder-background.jpg'); /* Replace with your image */
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 0; /* Reduced vertical padding, removed horizontal */
-            width: 100%; /* Make hero full width */
-            box-sizing: border-box; /* Ensure padding doesn't add to width */
+            color: #ffffff;
+            overflow: hidden; /* Hide parts of the image if it overflows */
         }
 
-        .hero-title {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            color: #555;
-            line-height: 1.4;
-            padding: 0 20px; /* Add some horizontal padding for the text */
+        .hero-content {
+            z-index: 5; /* Ensure content is above background but below header */
+            max-width: 800px; /* Limit width of the text block */
+            padding: 20px;
         }
 
-        .hero-image-container {
-            width: 100%; /* Make image container full width */
-            max-width: none; /* Remove max-width restriction */
-            margin-top: 20px; /* Adjust top margin */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .hero h4 {
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-weight: normal;
+            opacity: 0.8; /* Slightly less prominent */
         }
 
-        .hero-image {
+        .hero h1 {
+            margin: 0 0 20px 0;
+            font-size: 3em; /* Large main heading */
+            letter-spacing: 2px; /* Add some spacing */
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            opacity: 0.9; /* Slightly less prominent than headings */
+        }
+
+        /* Circular Images Section */
+        .circular-images {
+            padding: 50px 0;
+            background-color: #1a1a1a; /* Same dark background */
+            text-align: center; /* To help center the flex container below */
+        }
+
+        .circular-images-container {
+            display: flex;
+            justify-content: center; /* Center the group of images */
+            gap: 30px; /* Space between images */
+            flex-wrap: wrap; /* Allow images to wrap on smaller screens */
+        }
+
+        .circular-image {
+            width: 150px; /* Size of the circular image */
+            height: 150px;
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Hide parts outside the circle */
+            border: 3px solid rgba(255, 255, 255, 0.2); /* Optional subtle border */
+        }
+
+        .circular-image img {
+            display: block; /* Remove extra space below image */
             width: 100%;
-            display: block;
-            border-radius: 0; /* Remove border radius for full width */
+            height: 100%;
+            object-fit: cover; /* Crop image nicely within the circle */
         }
 
-        /* Responsive adjustments */
+        /* About Section Styling */
+        .about-me {
+            padding: 80px 0; /* More padding top/bottom */
+            background-color: #222222; /* Slightly lighter dark background */
+            text-align: center;
+        }
+
+        .about-me h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+
+        .about-me p {
+            max-width: 800px; /* Limit text width */
+            margin: 0 auto 40px auto; /* Center the paragraph and add space below */
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #cccccc; /* Lighter gray for paragraph text */
+        }
+
+        .about-me .btn {
+            display: inline-block; /* Allow padding/margin */
+            padding: 10px 30px;
+            border: 2px solid #ffffff; /* White border */
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .about-me .btn:hover {
+            background-color: #ffffff;
+            color: #222222;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #111111; /* Even darker background */
+            color: #aaaaaa; /* Gray text */
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments (basic) */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
+            header .container {
+                flex-direction: column; /* Stack logo and nav */
+                gap: 15px;
             }
 
             nav ul {
-                margin-left: auto;
+                gap: 15px; /* Reduce space between nav items */
+                justify-content: center; /* Center nav items when stacked */
             }
 
-            nav li {
-                margin-left: 10px;
+            .hero h1 {
+                font-size: 2em; /* Reduce heading size */
             }
 
-            .hero {
-                padding: 40px 0; /* Adjust padding for smaller screens */
-            }
-
-            .hero-title {
-                font-size: 1.8em;
-                padding: 0 15px;
+            .circular-images-container {
+                flex-direction: column; /* Stack circular images */
+                align-items: center; /* Center stacked images */
+                gap: 20px; /* Adjust gap */
             }
         }
+
     </style>
 </head>
 <body>
+
     <header>
-        <div class="logo">Sitharaclicks</div>
-        <nav>
-            <ul>
-                <li><a href="#">Work</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="logo">LIAM CHANDLER</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">MAIN PAGE</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">PORTFOLIO</a></li>
+                    <li><a href="#">EXPERIENCE</a></li>
+                    <li><a href="#">CONTACTS</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
-        <h1 class="hero-title">Capturing Your Moments,<br>From Grand Events to Timeless Portraits and Outdoor Adventures.</h1>
-        <div class="hero-image-container">
-            <img src="sitharaclicks.jpg" alt="Photography Example" class="hero-image">
+        <div class="hero-content">
+            <h4>WELCOME TO</h4>
+            <h1>PHOTOGRAPHER'S<br>PORTFOLIO</h1>
+            <p>A separate kind of photo art, that requires incredible skill of the photographer,<br>it is a portrait photographer.</p>
         </div>
     </section>
 
-    <script>
-        // You can add JavaScript for more interactive features here if needed.
-    </script>
+    <section class="circular-images">
+        <div class="container">
+            <div class="circular-images-container">
+                <div class="circular-image">
+                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+1" alt="Placeholder Image 1">
+                </div>
+                <div class="circular-image">
+                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+2" alt="Placeholder Image 2">
+                </div>
+                <div class="circular-image">
+                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+3" alt="Placeholder Image 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-me">
+        <div class="container">
+            <h2>SHORTLY ABOUT ME</h2>
+            <p>My name is Liam Chandler. I am a professional photographer with years of experience. I use state-of-the-art equipment to ensure the highest quality of my works. I want to share them with the audience and show my vision of the whole world. I'm passionate about capturing special moments and emphasizing the beauty of the virgin nature.</p>
+            <a href="#" class="btn">MORE</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Liam Chandler. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
