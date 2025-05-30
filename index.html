@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SITHARACLICKS PHOTGRAPHY</title>
-    <link rel="stylesheet" href="style.css"> <!-- We'll put the CSS in a file named style.css -->
+    <!-- Link to your external CSS file - Keep this! -->
+    <link rel="stylesheet" href="style.css">
     <style>
         /* Basic CSS for this example - ideally this would be in style.css */
         body {
@@ -12,7 +13,14 @@
             font-family: sans-serif; /* Using a generic sans-serif font */
             background-color: #1a1a1a; /* Dark background */
             color: #ffffff; /* White text by default */
+            /* Prevent scrolling when mobile menu is open (optional but good UX) */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
+         /* Add this rule to prevent vertical scrolling when menu is open */
+        body.nav-open {
+            overflow-y: hidden;
+        }
+
 
         .container {
             max-width: 1200px; /* Limit content width and center */
@@ -26,7 +34,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 10; /* Ensure it's above the image */
+            z-index: 10; /* Ensure it's above the image and below mobile menu overlay */
             padding: 20px 0;
             color: #ffffff;
         }
@@ -40,18 +48,21 @@
         .logo {
             font-size: 1.5em;
             font-weight: bold;
+            /* Add margin-right to push toggle button away on mobile */
+            margin-right: auto;
         }
 
+        /* --- DESKTOP NAVIGATION STYLES --- */
         nav ul {
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
+            display: flex; /* Desktop: horizontal flex */
             gap: 30px; /* Space between navigation items */
         }
 
         nav li {
-            display: inline;
+            display: inline-block; /* Desktop: inline-block */
         }
 
         nav a {
@@ -68,6 +79,42 @@
 
         nav a.active {
              border-bottom: 2px solid #ffffff; /* Underline for active page */
+        }
+
+        /* --- HAMBURGER TOGGLE (initially hidden on desktop) --- */
+        .menu-toggle {
+            display: none; /* Hide the toggle button by default on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px; /* Increase hit area */
+            position: relative; /* Needed for positioning the hamburger bars */
+            z-index: 20; /* Ensure it's above the menu when open */
+        }
+
+        /* Style for the hamburger icon bars */
+        .hamburger,
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff; /* Color of the bars */
+            margin: 5px 0; /* Space between bars */
+            transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for animation */
+        }
+
+        /* Position pseudo-elements for the top and bottom bars */
+         .hamburger::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+         .hamburger::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
 
 
@@ -187,27 +234,118 @@
             font-size: 0.9em;
         }
 
-        /* Responsive adjustments (basic) */
+        /* --- RESPONSIVE ADJUSTMENTS (MOBILE) --- */
         @media (max-width: 768px) {
+            /* Adjust header layout for mobile */
             header .container {
-                flex-direction: column; /* Stack logo and nav */
-                gap: 15px;
+                flex-direction: row; /* Keep logo and toggle in a row */
+                justify-content: space-between; /* Space them out */
+                padding: 15px 20px; /* Adjust padding */
+                position: relative; /* Needed for z-index context */
             }
 
+            /* Show the toggle button on mobile */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* --- MOBILE NAVIGATION STYLES --- */
             nav ul {
-                gap: 15px; /* Reduce space between nav items */
-                justify-content: center; /* Center nav items when stacked */
+                /* Initially hidden and positioned off-screen */
+                display: flex; /* Use flexbox for vertical layout */
+                flex-direction: column; /* Stack items vertically */
+                position: fixed; /* Fixed position relative to viewport */
+                top: 0; /* Position from the top */
+                right: -250px; /* Start off-screen to the right (width of menu) */
+                width: 250px; /* Width of the mobile menu */
+                height: 100vh; /* Full viewport height */
+                background-color: #222; /* Background for the menu */
+                padding: 80px 20px 20px 20px; /* Padding (top padding accounts for header height) */
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+                transition: right 0.3s ease; /* Smooth slide-in animation */
+                z-index: 15; /* Ensure menu is above content but below toggle */
+                 gap: 0; /* Remove gap from desktop */
             }
 
+            nav li {
+                display: block; /* Ensure list items are blocks */
+                margin-bottom: 20px; /* Space between menu items */
+            }
+
+            nav a {
+                color: #ffffff; /* Ensure link color is white */
+                font-size: 1.2em; /* Slightly larger font */
+                border-bottom: none; /* Remove desktop underline */
+                padding-bottom: 0; /* Remove desktop padding */
+                transition: color 0.2s ease;
+            }
+             nav a:hover,
+             nav a.active {
+                border-bottom: none; /* No underline on hover/active for mobile */
+                color: #cccccc; /* Subtle color change */
+            }
+
+
+            /* --- STATE WHEN MENU IS OPEN --- */
+            body.nav-open nav ul {
+                right: 0; /* Slide the menu into view */
+            }
+
+            /* Hamburger animation when menu is open (transforms into an 'X') */
+            body.nav-open .hamburger {
+                background: transparent; /* Hide the middle bar */
+            }
+            body.nav-open .hamburger::before {
+                transform: translateY(8px) rotate(45deg); /* Rotate top bar */
+            }
+            body.nav-open .hamburger::after {
+                transform: translateY(-8px) rotate(-45deg); /* Rotate bottom bar */
+            }
+
+            /* Optional: Add an overlay to dim the background when menu is open */
+            body.nav-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+                z-index: 10; /* Below the menu, above the content */
+                pointer-events: none; /* Allow clicks to pass through to the menu */
+            }
+
+
+            /* Adjust other section paddings for smaller screens */
             .hero h1 {
                 font-size: 2em; /* Reduce heading size */
             }
-
+            .circular-images {
+                padding: 30px 0;
+            }
             .circular-images-container {
                 flex-direction: column; /* Stack circular images */
                 align-items: center; /* Center stacked images */
                 gap: 20px; /* Adjust gap */
             }
+             .about-me {
+                padding: 50px 0;
+            }
+             .about-me h2 {
+                 font-size: 1.8em;
+                 margin-bottom: 20px;
+             }
+             .about-me p {
+                 font-size: 1em;
+                 margin-bottom: 30px;
+             }
+        }
+
+        /* Optional: Adjust for slightly larger tablets if needed */
+        @media (max-width: 992px) {
+             nav ul {
+                 gap: 20px; /* Slightly reduce gap on tablets */
+             }
         }
 
     </style>
@@ -217,6 +355,11 @@
     <header>
         <div class="container">
             <div class="logo" >SITHARACLICKS</div>
+            <!-- Hamburger toggle button - Add this -->
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <!-- Navigation Menu -->
             <nav>
                 <ul>
                     <li><a href="#" class="active">HOME</a></li>
@@ -266,6 +409,50 @@
             <p>&copy; 2023 Liam Chandler. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- Add this script block just before the closing body tag -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the hamburger button and the body element
+            const menuToggle = document.querySelector('.menu-toggle');
+            const body = document.body; // We'll toggle a class on the body
+
+            // Check if the elements exist before adding listeners
+            if (menuToggle && body) {
+                // Add a click event listener to the toggle button
+                menuToggle.addEventListener('click', function() {
+                    // Toggle the 'nav-open' class on the body
+                    body.classList.toggle('nav-open');
+
+                    // Optional: Improve accessibility by toggling aria-expanded attribute
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+
+                    // Optional: Manage focus for accessibility (e.g., move focus to menu when open)
+                    // For simplicity, we'll skip complex focus management here,
+                    // but it's a good practice for accessibility.
+                });
+
+                // Optional: Close the menu when a link is clicked (useful for single-page layouts)
+                // If your links navigate to different pages, you might remove this.
+                 document.querySelectorAll('nav a').forEach(link => {
+                    link.addEventListener('click', function() {
+                         // Use a small timeout to allow the browser to process the link click first
+                         setTimeout(() => {
+                             body.classList.remove('nav-open');
+                             menuToggle.setAttribute('aria-expanded', 'false');
+                             // Return focus to the toggle button after closing
+                             menuToggle.focus();
+                         }, 100); // Adjust the delay if needed
+                    });
+                 });
+
+                 // Optional: Close the menu if the user clicks outside of it (more complex)
+                 // You would add an event listener to the body and check if the click
+                 // target is outside the nav and the menu-toggle.
+            }
+        });
+    </script>
 
 </body>
 </html>
