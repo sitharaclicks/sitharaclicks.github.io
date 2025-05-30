@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitharaclicks Photography</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 40px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0; /* Reduced vertical padding, removed horizontal */
+            width: 100%; /* Make hero full width */
+            box-sizing: border-box; /* Ensure padding doesn't add to width */
+        }
+
+        .hero-title {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.4;
+            padding: 0 20px; /* Add some horizontal padding for the text */
+        }
+
+        .hero-image-container {
+            width: 100%; /* Make image container full width */
+            max-width: none; /* Remove max-width restriction */
+            margin-top: 20px; /* Adjust top margin */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image {
+            width: 100%;
+            display: block;
+            border-radius: 0; /* Remove border radius for full width */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                margin-left: auto;
+            }
+
+            nav li {
+                margin-left: 10px;
+            }
+
+            .hero {
+                padding: 40px 0; /* Adjust padding for smaller screens */
+            }
+
+            .hero-title {
+                font-size: 1.8em;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Sitharaclicks</div>
+        <nav>
+            <ul>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 class="hero-title">Capturing Your Moments,<br>From Grand Events to Timeless Portraits and Outdoor Adventures.</h1>
+        <div class="hero-image-container">
+            <img src="sitharaclicks.jpg" alt="Photography Example" class="hero-image">
+        </div>
+    </section>
+
+    <script>
+        // You can add JavaScript for more interactive features here if needed.
+    </script>
+</body>
+</html>
