@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SITHARACLICKS PHOTGRAPHY</title>
-    <!-- Link to your external CSS file - Keep this! -->
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SITHARACLICKS PHOTOGRAPHY</title>
     <style>
-        /* Basic CSS for this example - ideally this would be in style.css */
+        /* Your original styles */
         body {
             margin: 0;
-            font-family: sans-serif; /* Using a generic sans-serif font */
-            background-color: #1a1a1a; /* Dark background */
-            color: #ffffff; /* White text by default */
-            /* Prevent scrolling when mobile menu is open (optional but good UX) */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            font-family: sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
         }
-         /* Add this rule to prevent vertical scrolling when menu is open */
-        body.nav-open {
-            overflow-y: hidden;
-        }
-
 
         .container {
-            max-width: 1200px; /* Limit content width and center */
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px; /* Add some padding on the sides */
+            padding: 0 20px;
         }
 
-        /* Header Styling */
         header {
-            position: absolute; /* Position over the hero image */
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 10; /* Ensure it's above the image and below mobile menu overlay */
+            z-index: 10;
             padding: 20px 0;
             color: #ffffff;
         }
@@ -48,81 +38,58 @@
         .logo {
             font-size: 1.5em;
             font-weight: bold;
-            /* Add margin-right to push toggle button away on mobile */
-            margin-right: auto;
         }
 
-        /* --- DESKTOP NAVIGATION STYLES --- */
         nav ul {
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex; /* Desktop: horizontal flex */
-            gap: 30px; /* Space between navigation items */
+            display: flex;
+            gap: 30px;
         }
 
         nav li {
-            display: inline-block; /* Desktop: inline-block */
+            display: inline;
         }
 
         nav a {
             text-decoration: none;
             color: #ffffff;
             font-size: 1em;
-            padding-bottom: 5px; /* Space for the underline */
-            transition: border-bottom 0.3s ease; /* Smooth transition for underline */
+            padding-bottom: 5px;
+            transition: border-bottom 0.3s ease;
         }
 
         nav a:hover {
-            border-bottom: 2px solid #ffffff; /* Underline effect on hover */
+            border-bottom: 2px solid #ffffff;
         }
 
         nav a.active {
-             border-bottom: 2px solid #ffffff; /* Underline for active page */
+            border-bottom: 2px solid #ffffff;
         }
 
-        /* --- HAMBURGER TOGGLE (initially hidden on desktop) --- */
-        .menu-toggle {
-            display: none; /* Hide the toggle button by default on desktop */
-            background: none;
-            border: none;
+        /* Hamburger button styles */
+        .hamburger {
+            display: none; /* hide by default */
+            flex-direction: column;
             cursor: pointer;
-            padding: 10px; /* Increase hit area */
-            position: relative; /* Needed for positioning the hamburger bars */
-            z-index: 20; /* Ensure it's above the menu when open */
+            width: 30px;
+            height: 21px;
+            justify-content: space-between;
         }
 
-        /* Style for the hamburger icon bars */
-        .hamburger,
-        .hamburger::before,
-        .hamburger::after {
-            content: '';
+        .hamburger span {
             display: block;
-            width: 25px;
             height: 3px;
-            background-color: #ffffff; /* Color of the bars */
-            margin: 5px 0; /* Space between bars */
-            transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for animation */
+            background-color: #fff;
+            border-radius: 2px;
         }
 
-        /* Position pseudo-elements for the top and bottom bars */
-         .hamburger::before {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-         .hamburger::after {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-
-        /* Hero Section Styling */
+        /* Hero section etc. unchanged */
         .hero {
             position: relative;
-            height: 100vh; /* Full viewport height */
-            background-image: url('sitharaclicks.jpg'); /* Replace with your image */
+            height: 100vh;
+            background-image: url('sitharaclicks.jpg');
             background-size: cover;
             background-position: center center;
             display: flex;
@@ -130,12 +97,12 @@
             align-items: center;
             text-align: center;
             color: #ffffff;
-            overflow: hidden; /* Hide parts of the image if it overflows */
+            overflow: hidden;
         }
 
         .hero-content {
-            z-index: 5; /* Ensure content is above background but below header */
-            max-width: 800px; /* Limit width of the text block */
+            z-index: 5;
+            max-width: 800px;
             padding: 20px;
         }
 
@@ -143,55 +110,53 @@
             margin-bottom: 10px;
             font-size: 1em;
             font-weight: normal;
-            opacity: 0.8; /* Slightly less prominent */
+            opacity: 0.8;
         }
 
         .hero h1 {
             margin: 0 0 20px 0;
-            font-size: 3em; /* Large main heading */
-            letter-spacing: 2px; /* Add some spacing */
+            font-size: 3em;
+            letter-spacing: 2px;
             line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.1em;
             line-height: 1.6;
-            opacity: 0.9; /* Slightly less prominent than headings */
+            opacity: 0.9;
         }
 
-        /* Circular Images Section */
         .circular-images {
             padding: 50px 0;
-            background-color: #1a1a1a; /* Same dark background */
-            text-align: center; /* To help center the flex container below */
+            background-color: #1a1a1a;
+            text-align: center;
         }
 
         .circular-images-container {
             display: flex;
-            justify-content: center; /* Center the group of images */
-            gap: 30px; /* Space between images */
-            flex-wrap: wrap; /* Allow images to wrap on smaller screens */
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         .circular-image {
-            width: 150px; /* Size of the circular image */
+            width: 150px;
             height: 150px;
-            border-radius: 50%; /* Make it circular */
-            overflow: hidden; /* Hide parts outside the circle */
-            border: 3px solid rgba(255, 255, 255, 0.2); /* Optional subtle border */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
         }
 
         .circular-image img {
-            display: block; /* Remove extra space below image */
+            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Crop image nicely within the circle */
+            object-fit: cover;
         }
 
-        /* About Section Styling */
         .about-me {
-            padding: 80px 0; /* More padding top/bottom */
-            background-color: #222222; /* Slightly lighter dark background */
+            padding: 80px 0;
+            background-color: #222222;
             text-align: center;
         }
 
@@ -203,17 +168,17 @@
         }
 
         .about-me p {
-            max-width: 800px; /* Limit text width */
-            margin: 0 auto 40px auto; /* Center the paragraph and add space below */
+            max-width: 800px;
+            margin: 0 auto 40px auto;
             font-size: 1.1em;
             line-height: 1.7;
-            color: #cccccc; /* Lighter gray for paragraph text */
+            color: #cccccc;
         }
 
         .about-me .btn {
-            display: inline-block; /* Allow padding/margin */
+            display: inline-block;
             padding: 10px 30px;
-            border: 2px solid #ffffff; /* White border */
+            border: 2px solid #ffffff;
             color: #ffffff;
             text-decoration: none;
             font-size: 1em;
@@ -225,234 +190,158 @@
             color: #222222;
         }
 
-        /* Footer Styling */
         footer {
-            background-color: #111111; /* Even darker background */
-            color: #aaaaaa; /* Gray text */
+            background-color: #111111;
+            color: #aaaaaa;
             text-align: center;
             padding: 30px 0;
             font-size: 0.9em;
         }
 
-        /* --- RESPONSIVE ADJUSTMENTS (MOBILE) --- */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            /* Adjust header layout for mobile */
+
             header .container {
-                flex-direction: row; /* Keep logo and toggle in a row */
-                justify-content: space-between; /* Space them out */
-                padding: 15px 20px; /* Adjust padding */
-                position: relative; /* Needed for z-index context */
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
 
-            /* Show the toggle button on mobile */
-            .menu-toggle {
-                display: block;
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
             }
 
-            /* --- MOBILE NAVIGATION STYLES --- */
+            /* Initially hide nav menu */
+            nav {
+                position: absolute;
+                top: 70px; /* below header */
+                left: 0;
+                width: 100%;
+                background-color: #1a1a1a;
+                /* Hidden by default */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.open {
+                max-height: 500px; /* enough to show all menu items */
+            }
+
             nav ul {
-                /* Initially hidden and positioned off-screen */
-                display: flex; /* Use flexbox for vertical layout */
-                flex-direction: column; /* Stack items vertically */
-                position: fixed; /* Fixed position relative to viewport */
-                top: 0; /* Position from the top */
-                right: -250px; /* Start off-screen to the right (width of menu) */
-                width: 250px; /* Width of the mobile menu */
-                height: 100vh; /* Full viewport height */
-                background-color: #222; /* Background for the menu */
-                padding: 80px 20px 20px 20px; /* Padding (top padding accounts for header height) */
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-                transition: right 0.3s ease; /* Smooth slide-in animation */
-                z-index: 15; /* Ensure menu is above content but below toggle */
-                 gap: 0; /* Remove gap from desktop */
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px 0;
+                align-items: center;
             }
 
             nav li {
-                display: block; /* Ensure list items are blocks */
-                margin-bottom: 20px; /* Space between menu items */
+                display: block;
+                width: 100%;
+                text-align: center;
             }
 
             nav a {
-                color: #ffffff; /* Ensure link color is white */
-                font-size: 1.2em; /* Slightly larger font */
-                border-bottom: none; /* Remove desktop underline */
-                padding-bottom: 0; /* Remove desktop padding */
-                transition: color 0.2s ease;
-            }
-             nav a:hover,
-             nav a.active {
-                border-bottom: none; /* No underline on hover/active for mobile */
-                color: #cccccc; /* Subtle color change */
+                display: block;
+                padding: 10px 0;
+                font-size: 1.2em;
             }
 
-
-            /* --- STATE WHEN MENU IS OPEN --- */
-            body.nav-open nav ul {
-                right: 0; /* Slide the menu into view */
-            }
-
-            /* Hamburger animation when menu is open (transforms into an 'X') */
-            body.nav-open .hamburger {
-                background: transparent; /* Hide the middle bar */
-            }
-            body.nav-open .hamburger::before {
-                transform: translateY(8px) rotate(45deg); /* Rotate top bar */
-            }
-            body.nav-open .hamburger::after {
-                transform: translateY(-8px) rotate(-45deg); /* Rotate bottom bar */
-            }
-
-            /* Optional: Add an overlay to dim the background when menu is open */
-            body.nav-open::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-                z-index: 10; /* Below the menu, above the content */
-                pointer-events: none; /* Allow clicks to pass through to the menu */
-            }
-
-
-            /* Adjust other section paddings for smaller screens */
             .hero h1 {
-                font-size: 2em; /* Reduce heading size */
+                font-size: 2em;
             }
-            .circular-images {
-                padding: 30px 0;
-            }
+
             .circular-images-container {
-                flex-direction: column; /* Stack circular images */
-                align-items: center; /* Center stacked images */
-                gap: 20px; /* Adjust gap */
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
             }
-             .about-me {
-                padding: 50px 0;
-            }
-             .about-me h2 {
-                 font-size: 1.8em;
-                 margin-bottom: 20px;
-             }
-             .about-me p {
-                 font-size: 1em;
-                 margin-bottom: 30px;
-             }
         }
-
-        /* Optional: Adjust for slightly larger tablets if needed */
-        @media (max-width: 992px) {
-             nav ul {
-                 gap: 20px; /* Slightly reduce gap on tablets */
-             }
-        }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <div class="logo" >SITHARACLICKS</div>
-            <!-- Hamburger toggle button - Add this -->
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-            <!-- Navigation Menu -->
-            <nav>
-                <ul>
-                    <li><a href="#" class="active">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">PORTFOLIO</a></li>
-                    <li><a href="#">EXPERIENCE</a></li>
-                    <li><a href="#">CONTACTS</a></li>
-                </ul>
-            </nav>
+<header>
+    <div class="container">
+        <div class="logo">SITHARACLICKS</div>
+        <!-- Hamburger button -->
+        <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </header>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#" class="active">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="#">EXPERIENCE</a></li>
+                <li><a href="#">CONTACTS</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h4>WELCOME TO</h4>
-            <h1  style="color:#cbcb0b">SITHARACLICKS<br>Photograpy</h1>
-            <p >A separate kind of photo art, that requires incredible skill of the photographer,<br>it is a portrait photographer.</p>
-        </div>
-    </section>
+<section class="hero">
+    <div class="hero-content">
+        <h4>WELCOME TO</h4>
+        <h1 style="color:#cbcb0b">SITHARACLICKS<br>Photograpy</h1>
+        <p>A separate kind of photo art, that requires incredible skill of the photographer,<br>it is a portrait photographer.</p>
+    </div>
+</section>
 
-    <section class="circular-images">
-        <div class="container">
-            <div class="circular-images-container">
-                <div class="circular-image">
-                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+1" alt="Placeholder Image 1">
-                </div>
-                <div class="circular-image">
-                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+2" alt="Placeholder Image 2">
-                </div>
-                <div class="circular-image">
-                    <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+3" alt="Placeholder Image 3">
-                </div>
+<section class="circular-images">
+    <div class="container">
+        <div class="circular-images-container">
+            <div class="circular-image">
+                <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+1" alt="Placeholder Image 1" />
+            </div>
+            <div class="circular-image">
+                <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+2" alt="Placeholder Image 2" />
+            </div>
+            <div class="circular-image">
+                <img src="https://via.placeholder.com/150/808080/FFFFFF?text=Image+3" alt="Placeholder Image 3" />
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="about-me">
-        <div class="container">
-            <h2>SHORTLY ABOUT ME</h2>
-            <p>My name is Liam Chandler. I am a professional photographer with years of experience. I use state-of-the-art equipment to ensure the highest quality of my works. I want to share them with the audience and show my vision of the whole world. I'm passionate about capturing special moments and emphasizing the beauty of the virgin nature.</p>
-            <a href="#" class="btn">MORE</a>
-        </div>
-    </section>
+<section class="about-me">
+    <div class="container">
+        <h2>SHORTLY ABOUT ME</h2>
+        <p>My name is Liam Chandler. I am a professional photographer with years of experience. I use state-of-the-art equipment to ensure the highest quality of my works. I want to share them with the audience and show my vision of the whole world. I'm passionate about capturing special moments and emphasizing the beauty of the virgin nature.</p>
+        <a href="#" class="btn">MORE</a>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Liam Chandler. All Rights Reserved.</p>
-        </div>
-    </footer>
+<footer>
+    <div class="container">
+        <p>&copy; 2023 Liam Chandler. All Rights Reserved.</p>
+    </div>
+</footer>
 
-    <!-- Add this script block just before the closing body tag -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the hamburger button and the body element
-            const menuToggle = document.querySelector('.menu-toggle');
-            const body = document.body; // We'll toggle a class on the body
+<script>
+    // Toggle menu on hamburger click
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
 
-            // Check if the elements exist before adding listeners
-            if (menuToggle && body) {
-                // Add a click event listener to the toggle button
-                menuToggle.addEventListener('click', function() {
-                    // Toggle the 'nav-open' class on the body
-                    body.classList.toggle('nav-open');
+    function toggleMenu() {
+        const isOpen = navMenu.classList.toggle('open');
+        // Update aria-expanded for accessibility
+        hamburger.setAttribute('aria-expanded', isOpen);
+    }
 
-                    // Optional: Improve accessibility by toggling aria-expanded attribute
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', !isExpanded);
+    hamburger.addEventListener('click', toggleMenu);
 
-                    // Optional: Manage focus for accessibility (e.g., move focus to menu when open)
-                    // For simplicity, we'll skip complex focus management here,
-                    // but it's a good practice for accessibility.
-                });
-
-                // Optional: Close the menu when a link is clicked (useful for single-page layouts)
-                // If your links navigate to different pages, you might remove this.
-                 document.querySelectorAll('nav a').forEach(link => {
-                    link.addEventListener('click', function() {
-                         // Use a small timeout to allow the browser to process the link click first
-                         setTimeout(() => {
-                             body.classList.remove('nav-open');
-                             menuToggle.setAttribute('aria-expanded', 'false');
-                             // Return focus to the toggle button after closing
-                             menuToggle.focus();
-                         }, 100); // Adjust the delay if needed
-                    });
-                 });
-
-                 // Optional: Close the menu if the user clicks outside of it (more complex)
-                 // You would add an event listener to the body and check if the click
-                 // target is outside the nav and the menu-toggle.
-            }
-        });
-    </script>
+    // Optional: Allow toggling via keyboard 'Enter' or 'Space' keys for accessibility:
+    hamburger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu();
+        }
+    });
+</script>
 
 </body>
 </html>
