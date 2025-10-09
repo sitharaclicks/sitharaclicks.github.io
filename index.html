@@ -123,6 +123,32 @@
   .price{font-size:2rem;font-weight:600;color:var(--accent);margin:15px 0}
   .price-card ul{list-style:none;margin:20px 0;text-align:left;font-size:.9rem;color:var(--grey)}
   .price-card ul li{margin-bottom:8px}
+	/* ---------- GOOGLE REVIEW SECTION ---------- */
+	#review{
+	  padding:80px 0;
+	  text-align:center;
+	  background:var(--dark);            /* Same dark tone as hero */
+	}
+	.google-review-btn{
+	  display:inline-flex;
+	  align-items:center;
+	  gap:12px;
+	  padding:14px 32px;
+	  background:#fff;
+	  color:#000;
+	  font-weight:600;
+	  border-radius:40px;
+	  text-decoration:none;
+	  transition:.3s;
+	  box-shadow:0 6px 18px rgba(0,0,0,.25);
+	}
+	.google-review-btn img{
+	  width:28px;height:28px;display:block;
+	}
+	.google-review-btn:hover{
+	  transform:translateY(-3px);
+	  box-shadow:0 9px 22px rgba(0,0,0,.35);
+	}
 
   /* ---------- CONTACT ---------- */
   #contact{background:var(--dark-2);padding:80px 0;text-align:center}
@@ -272,6 +298,26 @@
     </div>
   </div>
 </section>
+
+
+<!-- GOOGLE REVIEW -->
+<section id="review">
+  <div class="container reveal">
+    <h2 class="section-title">Love the Photos?<br>Write Us a Google Review</h2>
+
+    <!-- Google requires their “G” logo remain unedited; this PNG is provided
+         by Google’s brand assets site. Replace only if you have a newer asset. -->
+    <a  href="https://www.google.com/search?q=sitharaclicks&sca_esv=cdd3abf2426d2d78#mpd=~12513300061410696486/customers/reviews"
+        target="_blank"
+        rel="noopener"
+        class="google-review-btn">
+        <img src="https://developers.google.com/identity/images/g-logo.png"
+             alt="Google logo">
+        <span>Review us on Google</span>
+    </a>
+  </div>
+</section>
+
 
 <!-- CONTACT -->
 <section id="contact">
