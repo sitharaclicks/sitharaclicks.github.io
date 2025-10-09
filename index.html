@@ -324,8 +324,18 @@
   <div class="container reveal">
     <h2 class="section-title">Get In Touch</h2>
     <p style="max-width:650px;margin:0 auto 40px;color:var(--grey)">Have a question, want a custom quote, or just want to chat about your vision? Drop a message below – I usually reply within 24 hours.</p>
+	<form action="https://formspree.io/f/xpwyjeny" method="POST">
+	  <input type="text"     name="name"    placeholder="Your name"    required>
+	  <input type="email"    name="email"   placeholder="you@email.com" required>
+	  <textarea name="message" rows="5"     placeholder="Tell me about your event…" required></textarea>
 
-    <form>
+	  <!-- optional redirect after success -->
+	  <input type="hidden" name="_redirect" value="https://www.sitharaclicks.com/thank-you.html">
+
+	  <button type="submit" class="btn">Send Message</button>
+	</form>
+
+    <!--form>
       <div class="field">
         <label>Name</label>
         <input type="text" placeholder="Your name" required>
@@ -339,7 +349,7 @@
         <textarea rows="5" placeholder="Tell me about your event…" required></textarea>
       </div>
       <button type="submit" class="btn">Send Message</button>
-    </form>
+    </form-->
   </div>
 </section>
 
