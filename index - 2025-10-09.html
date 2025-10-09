@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sitharaclicks Photography - Local Business in Novi, MI (Photography)</title>
+    <link rel="icon" type="image/x-icon" href="clicks.ico">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sitharaclicks Photography",
+      "image": "https://www.sitharaclicks.com/sitharaclicks.jpg",
+      "url": "https://www.sitharaclicks.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "22238 Solomon Blvd",
+        "addressLocality": "Novi",
+        "addressRegion": "MI",
+        "postalCode": "48375",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61571329054031",
+        "https://www.instagram.com/sitharaclicks/"
+      ]
+    }
+    </script>
+    <style>
+        /* Your original styles */
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 20px 0;
+            color: #ffffff;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav li {
+            display: inline;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1em;
+            padding-bottom: 5px;
+            transition: border-bottom 0.3s ease;
+        }
+
+        nav a:hover {
+            border-bottom: 2px solid #ffffff;
+        }
+
+        nav a.active {
+            border-bottom: 2px solid #ffffff;
+        }
+
+        /* Hamburger button styles */
+        .hamburger {
+            display: none; /* hide by default */
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+
+        /* Hero section etc. unchanged */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background-image: url('sitharaclicks.jpg');
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 5;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h4 {
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-weight: normal;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            margin: 0 0 20px 0;
+            font-size: 3em;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .circular-images {
+            padding: 50px 0;
+            background-color: #1a1a1a;
+            text-align: center;
+        }
+
+        .circular-images-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .circular-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .circular-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-me {
+            padding: 80px 0;
+            background-color: #222222;
+            text-align: center;
+        }
+
+        .about-me h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+
+        .about-me p {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #cccccc;
+        }
+
+        .about-me .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .about-me .btn:hover {
+            background-color: #ffffff;
+            color: #222222;
+        }
+
+        footer {
+            background-color: #111111;
+            color: #aaaaaa;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        /* Social icons container */
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #aaaaaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-icons a svg {
+            fill: currentColor;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+            transition: fill 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #cbcb0b;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+
+            header .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Show hamburger */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Initially hide nav menu */
+            nav {
+                position: absolute;
+                top: 70px; /* below header */
+                left: 0;
+                width: 100%;
+                background-color: #1a1a1a;
+                /* Hidden by default */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.open {
+                max-height: 500px; /* enough to show all menu items */
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                padding: 10px 0;
+                align-items: center;
+            }
+
+            nav li {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.2em;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .circular-images-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 20px 0;
+    color: #ffffff;
+    background-color: rgba(26, 26, 26, 0.5); /* 50% transparent background */
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">SITHARACLICKS</div>
+        <!-- Hamburger button -->
+        <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#" class="active">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="#">EXPERIENCE</a></li>
+                <li><a href="#">CONTACTS</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>WELCOME TO</h2>
+        <h1 style="color:#cbcb0b">SITHARACLICKS<br>Photograpy</h1>
+        <p>Transforming moments into timeless memories, with a lens that captures the essence of life, love, and the great outdoors.</p>
+    </div>
+</section>
+
+<section class="circular-images">
+    <div class="container">
+        <div class="circular-images-container">
+            <div class="circular-image">
+                <img src="nature.jpg" alt="nature" />
+            </div>
+            <div class="circular-image">
+                <img src="img2.jpg" alt="img2" />
+            </div>
+            <div class="circular-image">
+                <img src="me.jpg" alt="Me" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-me">
+    <div class="container">
+        <h2>SHORTLY ABOUT ME</h2>
+        <p>Welcome to Sitharaclicks, where passion meets precision. As a seasoned photographer, I've had the privilege of capturing life's precious moments, from the serenity of nature to the joy of human connection. With a keen eye for detail and a love for storytelling, I strive to create images that inspire, uplift, and transport you to new worlds.</p>
+        <a href="#" class="btn">MORE</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="social-icons" aria-label="Social media links">
+            <a href="https://www.facebook.com/profile.php?id=61571329054031" target="_blank" rel="noopener" aria-label="Facebook">
+                <!-- Facebook SVG Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                    <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.919.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.59l-.467 3.622h-3.123V24h6.116c.73 0 1.326-.597 1.326-1.326V1.326C24 .597 23.403 0 22.675 0z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/sitharaclicks/" target="_blank" rel="noopener" aria-label="Instagram">
+                <!-- Instagram SVG Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.343 3.608 1.318.975.975 1.256 2.242 1.318 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.343 2.633-1.318 3.608-.975.975-2.242 1.256-3.608 1.318-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.343-3.608-1.318-.975-.975-1.256-2.242-1.318-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.343-2.633 1.318-3.608S6.513 2.225 7.879 2.163C9.145 2.105 9.525 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.771.131 4.55.446 3.515 1.481c-1.035 1.035-1.35 2.256-1.409 3.537C2.013 6.257 2 6.661 2 10c0 3.339.013 3.743.106 5.023.06 1.282.374 2.503 1.409 3.538 1.035 1.035 2.256 1.35 3.537 1.409 1.281.059 1.685.072 5.023.072s3.743-.013 5.023-.106c1.282-.06 2.503-.374 3.538-1.409 1.035-1.035 1.35-2.256 1.409-3.537.059-1.281.072-1.685.072-5.023s-.013-3.743-.106-5.023c-.06-1.282-.374-2.503-1.409-3.538-1.035-1.035-2.256-1.35-3.537-1.409C15.743.013 15.339 0 12 0z"/>
+                    <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2025 SITHARACLICKS. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Toggle menu on hamburger click
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    function toggleMenu() {
+        const isOpen = navMenu.classList.toggle('open');
+        // Update aria-expanded for accessibility
+        hamburger.setAttribute('aria-expanded', isOpen);
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Optional: Allow toggling via keyboard 'Enter' or 'Space' keys for accessibility:
+    hamburger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu();
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
