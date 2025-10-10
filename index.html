@@ -18,6 +18,7 @@
     --light:#fff;
     --grey:#cccccc;
     --header-h:72px;
+    --accentD:#525205;
   }
 
   /* ---------- GLOBAL RESET ---------- */
@@ -42,8 +43,12 @@
     border-radius:30px;
     transition:.3s;
     font-weight:600;
+    background:var(--accentD);
   }
-  .btn:hover{background:var(--accent);color:var(--dark)}
+  .btn:hover{
+    background:var(--accent);
+    color:var(--dark)
+  }
 
   /* ---------- HEADER / NAV ---------- */
   header{
@@ -156,7 +161,8 @@
   form .field{margin-bottom:20px}
   form input,form textarea{
     width:100%;padding:12px 15px;border:none;border-radius:4px;
-    background:#2a2a2a;color:var(--light)
+    background:#2a2a2a;color:var(--light);
+    margin: 5px;
   }
   form button{cursor:pointer}
 
@@ -245,17 +251,13 @@
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
       <div class="exp">
-        <h4>2023 – Present | Lead Photographer, Sitharaclicks Studio</h4>
-        <p>Running my own studio, mentoring interns, photographing 40+ events each year.</p>
+        <h4>Happy Clients</h4>
+        <p>My experience ranges from capturing the excitement of family portraits, senior year and graduation day to the beautiful journey of maternity, as well as crafting polished, professional headshots for individuals. Honored to be a part of so many families' stories, capturing the moments that matter most.</p>
       </div>
       <div class="exp">
-        <h4>2020 – 2023 | Freelance Adventure & Wedding Photographer</h4>
-        <p>Specialized in destination elopements across the Midwest and Pacific Northwest.</p>
-      </div>
-      <div class="exp">
-        <h4>2017 – 2020 | Junior Photographer, LightWave Media</h4>
-        <p>Learned studio lighting, product photography and post-production workflows.</p>
-      </div>
+        <h4>Specializations</h4>
+        <p>xpert in natural light portraiture and off-camera flash for dynamic coverage. I specialize in creating lively and colorful portraits that reflect the true, energetic spirit of your family.</p>
+      </div>      
     </div>
   </div>
 </section>
@@ -281,7 +283,8 @@
         <ul>
           <li>4 hours of coverage</li>
           <li>150+ edited images</li>
-          <li>Fine-art photo book</li>
+          <li>Online gallery</li>
+          <li><s style="color:red">Fine-art photo book</s></li>
         </ul>
         <a href="#contact" class="btn">Book Now</a>
       </div>
@@ -291,6 +294,7 @@
         <ul>
           <li>Up to 10 hours of coverage</li>
           <li>300+ edited images</li>
+          <li>Online gallery</li>
           <li>Second shooter included</li>
         </ul>
         <a href="#contact" class="btn">Book Now</a>
