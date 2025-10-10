@@ -30,7 +30,7 @@
     line-height:1.6;
   }
   img{display:block;max-width:100%}
-
+  .aboutimg{display:block;max-width:120% !important}
   .container{max-width:1200px;margin:auto;padding:0 20px}
   h2.section-title{font-size:2.2rem;margin-bottom:15px;letter-spacing:1px;text-transform:uppercase;color:var(--accent)}
   .btn{
@@ -218,7 +218,7 @@
 <section id="about">
   <div class="container reveal">
     <h2 class="section-title">About Me</h2>
-    <div class="profile-pic"><img src="me.jpg" alt="Photographer portrait"></div>
+    <div class="profile-pic"><img src="me.jpg" class="aboutimg" alt="Photographer portrait"></div>
     <p>Hi, I'm <strong>Sithara</strong> – a Novi-based photographer obsessed with light, landscapes and genuine human connection. Over the past 7 years I’ve photographed hundreds of weddings, families and wild Michigan sunsets. My mission is simple: craft photos that make you feel.</p>
     <a href="#contact" class="btn" style="margin-top:25px">Let’s Talk</a>
   </div>
@@ -408,3 +408,4 @@ reveals.forEach(el=>revealIO.observe(el));
 
 </body>
 </html>
+
