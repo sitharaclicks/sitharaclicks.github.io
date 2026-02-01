@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarFlow | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- 1. The Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <header class="py-32 px-4 text-center bg-slate-100">
+        <h1 class="text-6xl font-black text-slate-900 mb-6">The better way to buy.</h1>
+        <a href="search.html" class="bg-blue-600 text-white px-10 py-4 rounded-full font-bold">Start Searching</a>
+    </header>
+
+    <!-- 2. The Loader Script -->
+    <script>
+        fetch('navbar.html').then(res => res.text()).then(html => {
+            document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+    </script>
+</body>
+</html>

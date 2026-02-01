@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Details | CarFlow</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		// Fetch and inject the navbar
+		fetch('navbar.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('navbar-placeholder').innerHTML = data;
+			})
+			.catch(err => console.error('Error loading navbar:', err));
+	</script>
+
+</head>
+<body class="bg-gray-100">
+    <div id="app">
+        
+		<div id="navbar-placeholder"></div>
+
+        <div v-if="car" class="max-w-6xl mx-auto py-10 px-4">
+            <a href="search.html" class="text-blue-600 font-medium mb-6 inline-block">? Back to Search</a>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+                <img :src="car.image" class="w-full h-full object-cover min-h-[400px]">
+                
+                <div class="p-10">
+                    <h1 class="text-4xl font-extrabold text-slate-900">{{car.year}} {{car.make}} {{car.model}}</h1>
+                    <div class="flex gap-4 mt-2 text-gray-500 text-lg">
+                        <span>{{car.mileage.toLocaleString()}} miles</span>
+                        <span class="text-gray-300">&bull;</span>
+                        <span>Stock #{{car.id}}00{{car.id}}</span>
+                    </div>
+
+                    <div class="mt-8 text-5xl font-bold text-blue-600">${{car.price.toLocaleString()}}</div>
+                    
+                    <div class="mt-10 space-y-6">
+                        <h2 class="text-xl font-bold border-b pb-2">Vehicle Features</h2>
+                        <div class="grid grid-cols-2 gap-y-4">
+                            <div v-for="(val, key) in car.features" :key="key">
+                                <span class="text-xs text-gray-400 uppercase font-bold block">{{key.replace('_', ' ')}}</span>
+                                <span class="text-lg font-medium">{{val}}</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gray-400 uppercase font-bold block">Shipping</span>
+                                <span class="text-lg font-medium">{{car.free_shipping ? 'Free' : 'Standard'}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-xl mt-10 hover:bg-blue-700">
+                        Start Purchase Online
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div v-else class="text-center py-20">Loading car details...</div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() { return { car: null } },
+            mounted() {
+                const params = new URLSearchParams(window.location.search);
+                const carId = parseInt(params.get('id'));
+                
+                fetch('cars.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        this.car = data.find(c => c.id === carId);
+                    });
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
