@@ -17,7 +17,7 @@
     "transmission": "Automatic",
     "cylinders": "Electric",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "Yes", "popular": true, "navigation": "Yes" }
   },
   {
@@ -38,7 +38,7 @@
     "transmission": "Automatic",
     "cylinders": "V6",
     "free_shipping": false,
-    "image": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=800&auto=format",
     "features": { "sunroof": "No", "leather": "No", "popular": true, "navigation": "No" }
   },
   {
@@ -59,7 +59,7 @@
     "transmission": "Automatic",
     "cylinders": "4-Cyl",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1568844293986-8d0400bd4745?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "No", "popular": true, "navigation": "Yes" }
   },
   {
@@ -80,7 +80,7 @@
     "transmission": "Automatic",
     "cylinders": "4-Cyl",
     "free_shipping": false,
-    "image": "https://images.unsplash.com/photo-1594070319944-7c0c631551e3?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?q=80&w=800&auto=format",
     "features": { "sunroof": "No", "leather": "No", "popular": false, "navigation": "No" }
   },
   {
@@ -101,7 +101,7 @@
     "transmission": "Automatic",
     "cylinders": "V8",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "Yes", "popular": true, "navigation": "Yes" }
   },
   {
@@ -122,7 +122,7 @@
     "transmission": "Manual",
     "cylinders": "V6",
     "free_shipping": false,
-    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format",
     "features": { "sunroof": "No", "leather": "No", "popular": true, "navigation": "No" }
   },
   {
@@ -143,7 +143,7 @@
     "transmission": "Automatic",
     "cylinders": "I6",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "Yes", "popular": false, "navigation": "Yes" }
   },
   {
@@ -164,7 +164,7 @@
     "transmission": "Automatic",
     "cylinders": "4-Cyl",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "No", "popular": true, "navigation": "Yes" }
   },
   {
@@ -185,7 +185,7 @@
     "transmission": "Automatic",
     "cylinders": "V6",
     "free_shipping": false,
-    "image": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "No", "popular": true, "navigation": "No" }
   },
   {
@@ -206,7 +206,7 @@
     "transmission": "Automatic",
     "cylinders": "4-Cyl",
     "free_shipping": true,
-    "image": "https://images.unsplash.com/photo-1562519819-016930ada31c?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1562519819-016930ada31c?q=80&w=800&auto=format",
     "features": { "sunroof": "Yes", "leather": "No", "popular": true, "navigation": "Yes" }
   },
   {
@@ -227,7 +227,7 @@
     "transmission": "Automatic",
     "cylinders": "V8",
     "free_shipping": false,
-    "image": "https://images.unsplash.com/photo-1566947167003-31358f5f3c3e?auto=format&fit=crop&w=600",
+    "image": "https://images.unsplash.com/photo-1566947167003-31358f5f3c3e?q=80&w=800&auto=format",
     "features": { "sunroof": "No", "leather": "Yes", "popular": true, "navigation": "Yes" }
   }
 ]
