@@ -1,31 +1,41 @@
+<!-- navbar.html -->
 <nav class="bg-slate-900 h-16 flex items-center px-4 md:px-8 justify-between shadow-lg relative z-[100]">
     <div class="flex items-center gap-4 md:gap-8">
         <!-- Mobile Menu Toggle -->
-        <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden text-white p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden text-white p-2 hover:bg-slate-800 rounded-lg transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
         </button>
         
+        <!-- Logo points to cars.html -->
         <a href="cars.html" class="text-xl md:text-2xl font-black text-white tracking-tighter">
             CAR<span class="text-blue-400">FLOW</span>
         </a>
         
+        <!-- Desktop Links -->
         <div class="hidden md:flex gap-6 items-center border-l border-slate-700 ml-2 pl-8">
-            <a href="search.html" class="text-gray-300 hover:text-white font-bold text-sm transition">SEARCH CARS</a>
-            <a href="#" class="text-gray-400 hover:text-white font-bold text-sm transition">SELL/TRADE</a>
+            <a href="search.html" class="text-gray-300 hover:text-white font-bold text-xs uppercase tracking-widest transition">Search Inventory</a>
+            <a href="#" class="text-gray-400 hover:text-white font-bold text-xs uppercase tracking-widest transition">Sell / Trade</a>
         </div>
     </div>
 
+    <!-- Right Side CTA -->
     <div class="flex items-center gap-4">
-        <span class="hidden lg:inline text-[10px] font-bold text-slate-500 uppercase tracking-widest">Support: 1-800-CAR-FLOW</span>
-        <a href="search.html" class="bg-blue-600 hover:bg-blue-500 text-white px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-black transition">
+        <span class="hidden lg:inline text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Support: 1-800-CAR-FLOW</span>
+        <a href="search.html" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-xs font-black transition shadow-lg shadow-blue-900/20">
             SHOP NOW
         </a>
     </div>
 
-    <!-- Mobile Dropdown Links -->
-    <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-slate-800 border-t border-slate-700 p-4 flex flex-col gap-4 md:hidden">
-        <a href="search.html" class="text-white font-bold text-sm">SEARCH CARS</a>
-        <a href="#" class="text-white font-bold text-sm">SELL/TRADE</a>
-        <a href="#" class="text-white font-bold text-sm">FINANCING</a>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-slate-800 border-t border-slate-700 p-6 flex flex-col gap-6 md:hidden shadow-2xl">
+        <a href="search.html" class="text-white font-black text-sm uppercase tracking-widest">Search Inventory</a>
+        <a href="#" class="text-white font-black text-sm uppercase tracking-widest">Sell / Trade</a>
+        <a href="#" class="text-white font-black text-sm uppercase tracking-widest">Financing</a>
+        <div class="pt-4 border-t border-slate-700">
+            <p class="text-slate-500 text-[10px] font-bold uppercase">Call Support</p>
+            <p class="text-white font-bold text-sm">1-800-CAR-FLOW</p>
+        </div>
     </div>
 </nav>
