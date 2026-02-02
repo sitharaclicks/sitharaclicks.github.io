@@ -11,30 +11,43 @@
         .filter-drawer { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px; width: 18px;
+            border-radius: 50%; background: #2563eb;
+            cursor: pointer; border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="bg-slate-50">
+    <!-- Navbar injected here -->
     <div id="navbar-placeholder"></div>
 
     <div id="app" v-cloak>
-        <!-- TOP CONTROL BAR -->
-        <div class="bg-white border-b sticky top-0 md:top-16 z-40 px-4 py-3">
+        <!-- STICKY FILTER BAR (Sticks to top-0 as navbar scrolls away) -->
+        <div class="bg-white border-b sticky top-0 z-40 px-4 py-3 shadow-md">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <button @click="isDrawerOpen = true" class="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-black transition active:scale-95">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                    FILTERS <span v-if="activeTagCount > 0" class="bg-blue-500 w-5 h-5 rounded-full text-[10px] flex items-center justify-center">{{activeTagCount}}</span>
+                <button @click="isDrawerOpen = true" class="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-black transition active:scale-95 hover:bg-slate-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                    FILTERS <span v-if="activeTagCount > 0" class="bg-blue-500 w-5 h-5 rounded-full text-[10px] flex items-center justify-center ml-1">{{activeTagCount}}</span>
                 </button>
                 
-                <div class="hidden md:block text-slate-400 font-bold text-xs uppercase tracking-widest">
-                    {{filteredCars.length}} Cars Matching
+                <div class="hidden md:block text-slate-400 font-bold text-xs uppercase tracking-[0.2em]">
+                    {{filteredCars.length}} Results Found
                 </div>
 
-                <select class="bg-transparent font-bold text-sm outline-none cursor-pointer text-slate-700">
-                    <option>Sort: Recommended</option>
-                    <option>Price: Low to High</option>
-                    <option>Mileage: Low to High</option>
-                    <option>Year: Newest</option>
-                </select>
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-black text-slate-400 uppercase hidden sm:inline">Sort By:</span>
+                    <select v-model="sortBy" class="bg-transparent font-bold text-sm outline-none cursor-pointer text-slate-700">
+                        <option value="recommended">Recommended</option>
+                        <option value="priceLow">Price: Low to High</option>
+                        <option value="priceHigh">Price: High to Low</option>
+                        <option value="mileage">Lowest Mileage</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -47,110 +60,74 @@
             
             <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
                 <div>
-                    <h2 class="text-2xl font-black text-slate-900">Filters</h2>
-                    <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">{{filteredCars.length}} matches found</p>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tighter">Refine Search</h2>
+                    <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">{{filteredCars.length}} matches available</p>
                 </div>
-                <button @click="isDrawerOpen = false" class="bg-slate-100 hover:bg-slate-200 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 transition">&times;</button>
+                <button @click="isDrawerOpen = false" class="bg-slate-100 hover:bg-slate-200 w-10 h-10 rounded-full flex items-center justify-center text-slate-500 transition font-bold text-xl">&times;</button>
             </div>
 
             <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-2">
                 
-                <!-- 1. Make & Model -->
+                <!-- 1. Make -->
                 <div class="border-b border-slate-100 pb-4">
                     <button @click="toggleSection('make')" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        Make & Model <span class="text-lg">{{ openSections.make ? '&minus;' : '+' }}</span>
+                        Make & Model <span class="text-lg">{{ openSections.make ? '-' : '+' }}</span>
                     </button>
                     <div v-if="openSections.make" class="mt-4 space-y-2">
                         <label v-for="m in uniqueValues('make')" :key="m" class="flex items-center gap-3 cursor-pointer group">
                             <input type="checkbox" :value="m" v-model="filters.makes" class="w-5 h-5 rounded border-slate-300 text-blue-600">
-                            <span class="text-sm font-bold text-slate-700 group-hover:text-blue-600">{{m}}</span>
+                            <span class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition">{{m}}</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- 2. Body Type (Visual Grid) -->
+                <!-- 2. Body Type -->
                 <div class="border-b border-slate-100 pb-4">
                     <button @click="toggleSection('body')" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        Body Type <span class="text-lg">{{ openSections.body ? '&minus;' : '+' }}</span>
+                        Body Style <span class="text-lg">{{ openSections.body ? '-' : '+' }}</span>
                     </button>
                     <div v-if="openSections.body" class="mt-4 grid grid-cols-2 gap-2">
                         <button v-for="b in uniqueValues('body_type')" :key="b" 
                                 @click="toggleFilter('body_types', b)"
-                                :class="filters.body_types.includes(b) ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600'"
-                                class="text-[10px] font-black py-3 rounded-xl uppercase transition">
+                                :class="filters.body_types.includes(b) ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200' : 'bg-slate-50 text-slate-600 border-transparent'"
+                                class="text-[10px] font-black py-3 rounded-xl border transition uppercase">
                             {{b}}
                         </button>
                     </div>
                 </div>
 
-                <!-- 3. Year & Mileage (Sliders) -->
+                <!-- 3. Specs Slider -->
                 <div class="border-b border-slate-100 pb-4">
                     <button @click="toggleSection('specs')" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        Year & Mileage <span class="text-lg">{{ openSections.specs ? '&minus;' : '+' }}</span>
+                        Mileage & Year <span class="text-lg">{{ openSections.specs ? '-' : '+' }}</span>
                     </button>
                     <div v-if="openSections.specs" class="mt-6 space-y-8 px-2">
                         <div>
                             <div class="flex justify-between mb-2">
-                                <label class="text-[10px] font-black text-slate-500 uppercase">Min Year</label>
-                                <span class="text-sm font-black text-blue-600">{{filters.minYear}}</span>
-                            </div>
-                            <input type="range" v-model="filters.minYear" min="2010" max="2024" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none accent-blue-600">
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
                                 <label class="text-[10px] font-black text-slate-500 uppercase">Max Mileage</label>
-                                <span class="text-sm font-black text-blue-600">{{filters.maxMileage.toLocaleString()}}</span>
+                                <span class="text-sm font-black text-blue-600">{{filters.maxMileage.toLocaleString()}} mi</span>
                             </div>
-                            <input type="range" v-model="filters.maxMileage" min="0" max="150000" step="5000" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none accent-blue-600">
+                            <input type="range" v-model="filters.maxMileage" min="0" max="150000" step="5000" class="w-full h-1.5 bg-slate-100 rounded-lg appearance-none">
                         </div>
                     </div>
                 </div>
 
-                <!-- 4. Fuel & Drivetrain -->
-                <div v-for="cat in ['fuel_type', 'drivetrain', 'transmission', 'cylinders']" :key="cat" class="border-b border-slate-100 pb-4">
+                <!-- 4. Fuel & Transmission (Dynamic Loop) -->
+                <div v-for="cat in ['fuel_type', 'drivetrain', 'transmission']" :key="cat" class="border-b border-slate-100 pb-4">
                     <button @click="toggleSection(cat)" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        {{cat.replace('_', ' ')}} <span class="text-lg">{{ openSections[cat] ? '&minus;' : '+' }}</span>
+                        {{cat.replace('_', ' ')}} <span class="text-lg">{{ openSections[cat] ? '-' : '+' }}</span>
                     </button>
                     <div v-if="openSections[cat]" class="mt-4 space-y-2">
-                        <label v-for="v in uniqueValues(cat)" :key="v" class="flex items-center gap-3 cursor-pointer">
+                        <label v-for="v in uniqueValues(cat)" :key="v" class="flex items-center gap-3 cursor-pointer group">
                             <input type="checkbox" :value="v" v-model="filters[cat + 's']" class="w-5 h-5 rounded border-slate-300 text-blue-600">
-                            <span class="text-sm font-bold text-slate-700">{{v}}</span>
+                            <span class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition">{{v}}</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- 5. Exterior Color (Circles) -->
-                <div class="border-b border-slate-100 pb-4">
-                    <button @click="toggleSection('color')" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        Exterior Color <span class="text-lg">{{ openSections.color ? '&minus;' : '+' }}</span>
-                    </button>
-                    <div v-if="openSections.color" class="mt-4 flex flex-wrap gap-3">
-                        <button v-for="c in uniqueValues('exterior_color')" :key="c" 
-                                @click="toggleFilter('colors', c)"
-                                :class="filters.colors.includes(c) ? 'ring-2 ring-blue-600 ring-offset-2 scale-110' : ''"
-                                class="w-10 h-10 rounded-full border shadow-inner transition"
-                                :style="{ backgroundColor: c.toLowerCase() }"></button>
-                    </div>
-                </div>
-
-                <!-- 6. Seating -->
-                <div class="border-b border-slate-100 pb-4">
-                    <button @click="toggleSection('seating')" class="flex justify-between w-full py-2 font-black text-xs uppercase tracking-widest text-slate-400">
-                        Seating Capacity <span class="text-lg">{{ openSections.seating ? '&minus;' : '+' }}</span>
-                    </button>
-                    <div v-if="openSections.seating" class="mt-4 flex gap-2">
-                        <button v-for="s in [2,4,5,7,8]" :key="s" 
-                                @click="filters.minSeating = s"
-                                :class="filters.minSeating === s ? 'bg-blue-600 text-white' : 'bg-slate-50 text-slate-600'"
-                                class="w-12 h-12 rounded-xl font-black text-sm transition">
-                            {{s}}+
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 7. Free Shipping -->
+                <!-- 5. Shipping Toggle -->
                 <div class="py-4">
-                    <label class="flex items-center justify-between cursor-pointer">
+                    <label class="flex items-center justify-between cursor-pointer bg-slate-50 p-4 rounded-2xl">
                         <span class="text-sm font-black text-slate-700">Free Shipping Only</span>
                         <input type="checkbox" v-model="filters.freeShipping" class="w-6 h-6 accent-green-500">
                     </label>
@@ -159,38 +136,44 @@
             </div>
 
             <!-- Drawer Footer -->
-            <div class="p-6 border-t bg-slate-50 flex gap-4">
-                <button @click="resetFilters" class="flex-1 py-4 text-xs font-black text-slate-400 uppercase tracking-widest">Reset</button>
+            <div class="p-6 border-t bg-white flex gap-4">
+                <button @click="resetFilters" class="flex-1 py-4 text-xs font-black text-slate-400 uppercase tracking-widest hover:text-slate-600 transition">Reset</button>
                 <button @click="isDrawerOpen = false" class="flex-[2] bg-blue-600 text-white py-4 rounded-2xl text-sm font-black uppercase shadow-xl shadow-blue-200 active:scale-95 transition">
-                    View {{filteredCars.length}} Cars
+                    Show {{filteredCars.length}} Cars
                 </button>
             </div>
         </aside>
 
         <!-- MAIN GRID -->
         <main class="max-w-7xl mx-auto px-4 py-8">
+            
             <!-- Active Filter Tags -->
             <div v-if="activeTagCount > 0" class="flex flex-wrap gap-2 mb-8">
                 <span v-for="tag in activeTags" :key="tag.val" 
-                      class="bg-blue-50 text-blue-600 border border-blue-100 px-4 py-1.5 rounded-full text-[10px] font-black uppercase flex items-center gap-2">
-                    {{tag.val}} <button @click="removeTag(tag)" class="text-lg leading-none">&times;</button>
+                      class="bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase flex items-center gap-2 shadow-md">
+                    {{tag.val}} <button @click="removeTag(tag)" class="text-lg leading-none ml-1">&times;</button>
                 </span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <a v-for="car in filteredCars" :key="car.id" :href="'detail.html?id=' + car.id" 
+                <a v-for="car in sortedCars" :key="car.id" :href="'detail.html?id=' + car.id" 
                    class="bg-white rounded-[32px] border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 block overflow-hidden group">
+                    
+                    <!-- Image Area -->
                     <div class="relative aspect-[16/10] overflow-hidden">
                         <img :src="car.image" 
                              @error="$event.target.src='https://placehold.co/600x400?text=Image+Coming+Soon'"
                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div v-if="car.free_shipping" class="absolute top-4 left-4 bg-green-500 text-white text-[9px] font-black px-3 py-1.5 rounded-full shadow-lg">FREE SHIPPING</div>
                     </div>
+
+                    <!-- Content Area -->
                     <div class="p-6">
                         <h3 class="font-black text-slate-800 text-lg leading-tight group-hover:text-blue-600 transition">{{car.year}} {{car.make}} {{car.model}}</h3>
                         <p class="text-[10px] text-slate-400 font-black tracking-[0.15em] mt-2 uppercase">
                             {{car.mileage.toLocaleString()}} MI &bull; {{car.fuel_type}} &bull; {{car.drivetrain}}
                         </p>
+                        
                         <div class="mt-8 flex items-end justify-between">
                             <div>
                                 <span class="text-3xl font-black text-slate-900">${{car.price.toLocaleString()}}</span>
@@ -205,14 +188,15 @@
             <!-- Empty State -->
             <div v-if="filteredCars.length === 0" class="text-center py-40">
                 <div class="text-6xl mb-6">??</div>
-                <h2 class="text-2xl font-black text-slate-900">We couldn't find a match</h2>
-                <p class="text-slate-500 mt-2">Try removing some filters to see more results.</p>
-                <button @click="resetFilters" class="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full font-black shadow-lg">Clear All Filters</button>
+                <h2 class="text-2xl font-black text-slate-900">No results found</h2>
+                <p class="text-slate-500 mt-2">Try adjusting your filters or search term.</p>
+                <button @click="resetFilters" class="mt-8 bg-blue-600 text-white px-8 py-3 rounded-full font-black shadow-lg hover:bg-blue-500 transition">Clear All Filters</button>
             </div>
         </main>
     </div>
 
     <script>
+        // Load Navbar
         fetch('navbar.html').then(res => res.text()).then(html => {
             document.getElementById('navbar-placeholder').innerHTML = html;
         });
@@ -223,11 +207,12 @@
                 return {
                     cars: [],
                     isDrawerOpen: false,
-                    openSections: { make: true, body: true, specs: true, fuel_type: false, color: false, seating: false },
+                    sortBy: 'recommended',
+                    openSections: { make: true, body: true, specs: true, fuel_type: false, drivetrain: false, transmission: false },
                     filters: {
-                        makes: [], body_types: [], colors: [], fuel_types: [], 
-                        drivetrains: [], transmissions: [], cylinderss: [],
-                        maxMileage: 150000, minYear: 2010, minSeating: 2, freeShipping: false
+                        makes: [], body_types: [], fuel_types: [], 
+                        drivetrains: [], transmissions: [],
+                        maxMileage: 150000, freeShipping: false
                     }
                 }
             },
@@ -236,27 +221,29 @@
                     let tags = [];
                     this.filters.makes.forEach(v => tags.push({ cat: 'makes', val: v }));
                     this.filters.body_types.forEach(v => tags.push({ cat: 'body_types', val: v }));
-                    this.filters.colors.forEach(v => tags.push({ cat: 'colors', val: v }));
                     if(this.filters.freeShipping) tags.push({ cat: 'freeShipping', val: 'Free Shipping' });
                     return tags;
                 },
                 activeTagCount() {
-                    return this.activeTags.length + (this.filters.maxMileage < 150000 ? 1 : 0) + (this.filters.minYear > 2010 ? 1 : 0);
+                    return this.activeTags.length + (this.filters.maxMileage < 150000 ? 1 : 0);
                 },
                 filteredCars() {
                     return this.cars.filter(car => {
                         return (this.filters.makes.length === 0 || this.filters.makes.includes(car.make)) &&
                                (this.filters.body_types.length === 0 || this.filters.body_types.includes(car.body_type)) &&
                                (this.filters.fuel_types.length === 0 || this.filters.fuel_types.includes(car.fuel_type)) &&
-                               (this.filters.colors.length === 0 || this.filters.colors.includes(car.exterior_color)) &&
                                (this.filters.drivetrains.length === 0 || this.filters.drivetrains.includes(car.drivetrain)) &&
                                (this.filters.transmissions.length === 0 || this.filters.transmissions.includes(car.transmission)) &&
-                               (this.filters.cylinderss.length === 0 || this.filters.cylinderss.includes(car.cylinders)) &&
                                (car.mileage <= this.filters.maxMileage) &&
-                               (car.year >= this.filters.minYear) &&
-                               (car.seating >= this.filters.minSeating) &&
                                (!this.filters.freeShipping || car.free_shipping);
                     });
+                },
+                sortedCars() {
+                    let sorted = [...this.filteredCars];
+                    if (this.sortBy === 'priceLow') sorted.sort((a,b) => a.price - b.price);
+                    if (this.sortBy === 'priceHigh') sorted.sort((a,b) => b.price - a.price);
+                    if (this.sortBy === 'mileage') sorted.sort((a,b) => a.mileage - b.mileage);
+                    return sorted;
                 }
             },
             methods: {
@@ -272,7 +259,7 @@
                     else this.filters[tag.cat] = this.filters[tag.cat].filter(v => v !== tag.val);
                 },
                 resetFilters() {
-                    this.filters = { makes: [], body_types: [], colors: [], fuel_types: [], drivetrains: [], transmissions: [], cylinderss: [], maxMileage: 150000, minYear: 2010, minSeating: 2, freeShipping: false };
+                    this.filters = { makes: [], body_types: [], fuel_types: [], drivetrains: [], transmissions: [], maxMileage: 150000, freeShipping: false };
                 }
             },
             mounted() {
