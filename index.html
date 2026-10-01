@@ -269,6 +269,15 @@
     .hero-buttons{flex-direction:column;align-items:stretch}
     .hero-buttons .btn{width:100%}
   }
+
+  .session-feature{display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:28px;margin-top:34px;padding:18px;background:var(--paper);border:1px solid var(--line);text-decoration:none;transition:.25s ease}
+  .session-feature:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .session-feature img{width:100%;height:150px;object-fit:cover;border-radius:3px}
+  .session-feature .kicker{margin-bottom:8px}
+  .session-feature h3{font-family:var(--serif);font-size:1.7rem;font-weight:500;margin:0 0 4px}
+  .session-feature p{color:var(--ink-soft);font-size:.9rem;margin:0}
+  .session-feature .session-arrow{font-size:1.5rem;color:var(--accent);padding:0 16px}
+  @media(max-width:700px){.session-feature{grid-template-columns:100px 1fr;gap:16px;padding:12px}.session-feature img{height:110px}.session-feature h3{font-size:1.3rem}.session-feature .session-arrow{display:none}}
   </style>
   <script>
   function moveToHome(){
@@ -377,6 +386,11 @@
       <div class="portfolio-item"><img src="portfolio_3.jpg" alt="Editorial portrait"><span class="cap">Editorial</span></div>
       <div class="portfolio-item"><img src="portfolio_4.jpg" alt="Family portrait outdoors"><span class="cap">Family Session</span></div>
     </div>
+    <a class="session-feature" href="client-gallery/niveditha-sunil/niveditha-sunil-senior-portraits.html">
+      <img src="client-gallery/niveditha-sunil/photos/niveditha-sunil-03.jpg" alt="Senior portrait of Niveditha Sunil among flowering trees" loading="lazy">
+      <span><span class="kicker">Featured Session</span><h3>Niveditha Sunil · Senior Portraits</h3><p>A portrait of a bright new chapter.</p></span>
+      <span class="session-arrow" aria-hidden="true">↗</span>
+    </a>
   </div>
 </section>
 
